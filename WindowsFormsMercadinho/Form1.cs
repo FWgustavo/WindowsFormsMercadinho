@@ -12,6 +12,7 @@ namespace WindowsFormsMercadinho
 {
     public partial class Form1 : Form
     {
+        double total;
         public Form1()
         {
             InitializeComponent();
@@ -25,6 +26,34 @@ namespace WindowsFormsMercadinho
 
             ListBox lista = lstProdutos;
             lista.Items.Add(produto + "/" + quantidade + "/" + valor);
+
+            total += quantidade * valor;
+
+            lblTotal.Text = total.ToString("C");
+
+            txtProduto.Clear();
+            txtQtde.Clear();
+            txtValor.Clear();
+
+            txtProduto.Focus();
+        }
+
+        private void btnLimpar_Click(object sender, EventArgs e)
+        {
+            txtProduto.Clear();
+            txtQtde.Clear();
+            txtValor.Clear();
+
+            lstProdutos.Items.Clear();
+
+            lblTotal.Text = "R$ 00,00";
+
+            txtProduto.Focus();
+        }
+
+        private void btnFechar_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
